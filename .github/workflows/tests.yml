@@ -14,7 +14,7 @@ jobs:
         # https://help.github.com/articles/virtual-environments-for-github-actions
         platform:
           - ubuntu-latest  # ubuntu-20.04
-        python-version: [3.9, pypy-3.9]
+        python-version: [3.9]
 
     steps:
     - uses: actions/checkout@v3
