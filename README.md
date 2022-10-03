@@ -18,7 +18,7 @@ $ pip install git+https://github.com/kuromt/nbdiff-web-exporter
 
 ```bash
 $ mkdir ./export-data
-$ nbdiff-web-exporter --export-dir ./export-data --port 55139  master branch1 data/notebook.ipynb 
+$ nbdiff-web-exporter --export-dir ./export-data --port 8080  main branch1 data/notebook.ipynb 
 ```
 
 Then, diff is saved as html file.
