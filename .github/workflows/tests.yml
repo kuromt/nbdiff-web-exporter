@@ -37,8 +37,6 @@ jobs:
     steps:
       - name: Checkout source tree
         uses: actions/checkout@v3
-        with:
-          ref: "test"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -49,7 +47,7 @@ jobs:
       - name: run
         run: |
           mkdir export-dir
-          nbdiff-web-exporter --export-dir ./export-data --port 8080  main test data/notebook.ipynb
+          nbdiff-web-exporter --export-dir ./export-data --port 8080  main test-data data/notebook.ipynb
       - name: check diff file is exists.
         run: |
           ls export-dir/notebook.html
