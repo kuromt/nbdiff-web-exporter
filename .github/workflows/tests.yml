@@ -24,3 +24,21 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Test with tox
       run: tox
+
+  chrome_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source tree
+        uses: actions/checkout@v3
+        with:
+          ref: "test"
+      - name: Setup
+        run: |
+          pip install .
+      - name: run
+        run: |
+          mkdir export-dir
+          nbdiff-web-exporter --export-dir ./export-data --port 8080  main test data/notebook.ipynb
+      - name: check diff file is exists.
+        run: |
+          ls export-dir/notebook.html
