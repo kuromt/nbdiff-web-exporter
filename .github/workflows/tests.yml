@@ -49,7 +49,7 @@ jobs:
       - name: run
         run: |
           mkdir export-dir
-          nbdiff-web-exporter --export-dir ./export-dir --port 8080  main origin/test-data data/notebook.ipynb
+          nbdiff-web-exporter --export-dir ./export-dir --port 8080  origin/main origin/test-data data/notebook.ipynb
       - name: check diff file is exists.
         run: |
           ls export-dir/notebook.html
