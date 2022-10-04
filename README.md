@@ -24,12 +24,12 @@ $ nbdiff-web-exporter --export-dir ./export-data --port 8080  main branch1 data/
 Then, diff is saved as html file.
 
 ```bash
-$ ls export-data/
-notebook.html
+$ ls ls export-data/data/notebook.html 
+export-data/data/notebook.html
 ```
 
 To show in your browser, run open command.
 
 ```bash
-$ open export-data/notebook.html 
+$ open export-data/data/notebook.html
 ```
