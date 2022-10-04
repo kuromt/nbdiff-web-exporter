@@ -174,6 +174,8 @@ def export_diff(
     logger.info("close nbdiff-web window.")
     close(driver, timeout)
     nbdiff_web_process.join()
+    logger.info("quit WebDriver.")
+    driver.quit()
     return
 
 
