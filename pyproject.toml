@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nbdiff_web_exporter"
+authors = [
+    {name = "kuromt", email = "n.kuromatsu@gmail.com"},
+]
+description = "nbdiff-web wrapper tool to export notebook diff."
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "nbdime==3.1.1",
+    "selenium==4.4.3",
+    "ipython-genutils==0.2.0"
+]
+dynamic = ["version"]
+
+[project.scripts]
+nbdiff-web-exporter = "nbdiff_web_exporter.nbdiff_web_exporter:cli"
+
+[tool.setuptools.packages.find]
+exclude = ["build", "tests"]
+
+[tool.setuptools.dynamic]
+version = {attr = "nbdiff_web_exporter._version.__version__"}
+
+[tool.setuptools_scm]
+write_to = "nbdiff_web_exporter/_version.py"
