@@ -54,4 +54,4 @@ jobs:
           nbdiff-web-exporter --export-dir ./export-dir --port 8080  origin/main origin/test-data data/notebook.ipynb
       - name: check diff file is exists.
         run: |
-          ls export-dir/notebook.html
+          ls ./export-dir/data/notebook.html

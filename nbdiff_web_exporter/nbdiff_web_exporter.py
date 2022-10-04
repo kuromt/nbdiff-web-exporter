@@ -5,7 +5,7 @@ import sys
 import time
 from logging import getLogger
 from multiprocessing import Process
-from os.path import abspath, basename
+from os.path import abspath
 from shutil import move
 from urllib import parse
 
@@ -82,15 +82,18 @@ def get_download_file_path(export_dir: str):
     return os.path.join(export_dir, DOWNLOADED_FILE)
 
 
-def move_diff_file(export_dir, file_path: str):
-    from_path = get_download_file_path(export_dir)
-    if not os.path.exists(from_path):
-        raise FileNotFoundError(f"diff file is not found: {os.path.abspath(from_path)}")
+def move_file(export_dir, file_path: str):
+    diff_file_path = get_download_file_path(export_dir)
+    if not os.path.exists(diff_file_path):
+        raise FileNotFoundError(f"diff file is not found: {os.path.abspath(diff_file_path)}")
     # split filename and extention
-    file_name, _ = os.path.splitext(basename(file_path))
-    move_path = os.path.join(abspath(export_dir), file_name + ".html")
-    logger.info(f"move file: {from_path} to {move_path}")
-    move(from_path, move_path)
+    file_name, _ = os.path.splitext(file_path)
+    move_path = abspath(os.path.join(abspath(export_dir), file_name + ".html"))
+    logger.info(f"move file: {diff_file_path} to {move_path}")
+    # make directory is not exist
+    move_file_dir = os.path.dirname(move_path)
+    os.makedirs(move_file_dir, exist_ok=True)
+    move(diff_file_path, move_path)
     return
 
 
@@ -166,7 +169,7 @@ def export_diff(
     downloaded_file_path = get_download_file_path(export_dir)
     wait_for_downloaded(downloaded_file_path, timeout)
     # move exported files
-    move_diff_file(export_dir, file_path)
+    move_file(export_dir, file_path)
     # close nbdiff-web
     logger.info("close nbdiff-web window.")
     close(driver, timeout)
