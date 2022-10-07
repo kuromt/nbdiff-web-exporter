@@ -157,11 +157,11 @@ def export_diff(
     logger.info(f"nbdiff-web url: {nbdiff_web_url}")
     # run nbdiff-web
     nbdiff_web_process = run_nbdiff_web_server(nbdiff_web_opts)
+    logger.info(f"nbdiff-web process: {nbdiff_web_process}")
     # wait_for_ready
     wait_for_ready(port, timeout)
 
     driver = connect(nbdiff_web_url, export_dir)
-
     # download diff file as html
     logger.info(f"export diff of {file_path}.")
     export(driver, timeout)
@@ -173,9 +173,12 @@ def export_diff(
     # close nbdiff-web
     logger.info("close nbdiff-web window.")
     close(driver, timeout)
-    nbdiff_web_process.join()
     logger.info("quit WebDriver.")
     driver.quit()
+
+    # Note: Send sigkill to nbdiff-web because nbdiff-web does not support stop operation.
+    logger.info("kill nbdiff-web process")
+    nbdiff_web_process.kill()
     return
 
 
