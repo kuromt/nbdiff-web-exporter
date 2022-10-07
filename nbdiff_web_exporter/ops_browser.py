@@ -27,18 +27,14 @@ def connect(url, download_dir: str):
 
 
 def close(driver: Chrome, timeout: int = 10):
-    _ = WebDriverWait(driver, timeout).until(
-        EC.visibility_of_element_located((By.ID, "nbdime-close"))
-    )
+    _ = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.ID, "nbdime-close")))
     download_button = driver.find_element(By.ID, "nbdime-close")
     download_button.click()
     return
 
 
 def export(driver: Chrome, timeout: int = 10):
-    _ = WebDriverWait(driver, timeout).until(
-        EC.visibility_of_element_located((By.ID, "nbdime-export"))
-    )
+    _ = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.ID, "nbdime-export")))
     download_button = driver.find_element(By.ID, "nbdime-export")
     download_button.click()
     return
