@@ -71,7 +71,7 @@ def build_arg_parser():
         default=None,
     )
     parser.add_argument(
-        "path",
+        "paths",
         help="Filter diffs for git-revisions based on path",
         default=None,
     )
@@ -152,7 +152,7 @@ def export_diff(
     timeout: int,
     nbdiff_web_opts: argparse.Namespace,
 ):
-    file_path = nbdiff_web_opts.path
+    file_path = nbdiff_web_opts.paths
     nbdiff_web_url = generate_url(base, remote, file_path, port)
     logger.info(f"nbdiff-web url: {nbdiff_web_url}")
     # run nbdiff-web
