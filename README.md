@@ -40,17 +40,16 @@ nbdiff-web-exporter support almost options of nbdiff-web. To make simple diff, r
 ```
 $ nbdiff-web-exporter --help
 usage: nbdiff-web-exporter [-h] [--timeout TIMEOUT] --export-dir EXPORT_DIR [--version] [--config]
-                           [--log-level {DEBUG,INFO,WARN,ERROR,CRITICAL}] [-p PORT] [-b BROWSER]
-                           [--persist] [--ip IP] [-w WORKDIRECTORY] [--base-url BASE_URL]
-                           [--show-unchanged] [-s] [-o] [-a] [-m] [-i] [-d]
-                           [base] [remote] path
+                           [--log-level {DEBUG,INFO,WARN,ERROR,CRITICAL}] [-p PORT] [-b BROWSER] [--persist] [--ip IP]
+                           [-w WORKDIRECTORY] [--base-url BASE_URL] [--show-unchanged] [-s] [-o] [-a] [-m] [-i] [-d]
+                           [base] [remote] paths
 
 Difftool for Nbdime.
 
 positional arguments:
   base                  The base notebook filename OR base git-revision.
   remote                The remote modified notebook filename OR remote git-revision.
-  path                  Filter diffs for git-revisions based on path
+  paths                 Filter diffs for git-revisions based on path
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -64,14 +63,11 @@ optional arguments:
   -p PORT, --port PORT  specify the port you want the server to run on. Default is 8888.
   -b BROWSER, --browser BROWSER
                         specify the browser to use, to override the system default.
-  --persist             prevent server shutting down on remote close request (when these would normally be
-                        supported).
-  --ip IP               specify the interface to listen to for the web server. NOTE: Setting this to
-                        anything other than 127.0.0.1/localhost might comprimise the security of your
-                        computer. Use with care!
+  --persist             prevent server shutting down on remote close request (when these would normally be supported).
+  --ip IP               specify the interface to listen to for the web server. NOTE: Setting this to anything other than
+                        127.0.0.1/localhost might comprimise the security of your computer. Use with care!
   -w WORKDIRECTORY, --workdirectory WORKDIRECTORY
-                        specify the working directory you want the server to run from. Default is the
-                        actual cwd at program start.
+                        specify the working directory you want the server to run from. Default is the actual cwd at program start.
   --base-url BASE_URL   The base URL prefix under which to run the web app
   --show-unchanged      show unchanged cells by default
 
